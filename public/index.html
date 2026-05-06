@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cakedio - AI Radio</title>
+    <!-- 引入字体和图标 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部控制栏 -->
+        <header class="header">
+            <div class="logo">Cakedio</div>
+            <div class="header-controls">
+                <div class="weather-widget" id="weather-widget">
+                    <i class="ph ph-cloud-sun" id="weather-icon"></i>
+                    <span id="weather-text">--°C</span>
+                </div>
+                <button class="btn-outline">LOGIN</button>
+                <div class="theme-toggle">
+                    <button class="active" id="btn-theme-dark">DARK</button>
+                    <button id="btn-theme-light">LIGHT</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 时钟显示板 -->
+        <section class="display-board">
+            <div class="grid-bg"></div>
+            <div class="clock-display">
+                <div class="time" id="clock-time">00:00</div>
+                <div class="date" id="clock-date">
+                    <span id="clock-day">SUNDAY</span><br>
+                    <span id="clock-full-date">01 JAN 2026</span>
+                </div>
+                <div class="status-indicator">
+                    <span class="dot"></span> ON AIR
+                </div>
+            </div>
+        </section>
+
+        <!-- 播放器控制区 -->
+        <section class="player">
+            <div class="player-top">
+                <div class="now-playing-info">
+                    <div class="equalizer" id="equalizer">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="track-details">
+                        <div class="title" id="track-title">Waiting for signal...</div>
+                        <div class="status" id="track-status">STOPPED</div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="btn-prev"><i class="ph-fill ph-skip-back"></i></button>
+                    <button id="btn-play"><i class="ph-fill ph-play" id="play-icon"></i></button>
+                    <button id="btn-next"><i class="ph-fill ph-skip-forward"></i></button>
+                    <button id="btn-stop"><i class="ph-fill ph-square"></i></button>
+                    <button class="btn-text">HIDE</button>
+                    <div class="volume-control">
+                        <span>VOL</span>
+                        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <span id="time-current">0:00</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <span id="time-total">0:00</span>
+            </div>
+        </section>
+
+        <!-- 播放队列 -->
+        <section class="queue-section">
+            <div class="queue-header">
+                <span>QUEUE</span>
+                <span id="queue-count">0 TRACKS</span>
+            </div>
+            <div class="queue-list" id="queue-list">
+                <div class="queue-empty">No tracks in queue</div>
+            </div>
+        </section>
+
+        <!-- DJ 对话区 -->
+        <section class="chat-section">
+            <div class="chat-header">
+                <div class="dj-name"><span class="dot"></span> Cakedio</div>
+                <div class="audio-wave"><i class="ph ph-waveform"></i></div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message dj-message">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Cakedio&backgroundColor=1a1a1a" alt="DJ" class="avatar">
+                    <div class="bubble">
+                        <p id="dj-text">Always here, spinning through the night. What's next on your mind?</p>
+                        <div class="msg-status" id="dj-status">IDLE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Say something to the DJ..." autocomplete="off">
+                <button id="btn-mic"><i class="ph ph-microphone"></i></button>
+                <button id="btn-send"><i class="ph ph-arrow-up"></i></button>
+            </div>
+            <div class="footer">
+                <span>CAKEDIO FM</span>
+                <span>CONNECTED</span>
+            </div>
+        </section>
+
+        <audio id="audio-player"></audio>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
